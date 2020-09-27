@@ -34,7 +34,7 @@
 
       // Create texture from rendered graphics.
       var hudTexture = new THREE.Texture(hudCanvas) 
-      //hudTexture.needsUpdate = true;
+      hudTexture.needsUpdate = true;
       hudTexture.minFilter =THREE.NearestFilter;
 
       // Create HUD material.
