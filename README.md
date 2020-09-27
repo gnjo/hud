@@ -1,5 +1,6 @@
 # hud
 three.js on ui plane
+demo https://codepen.io/gnjo/pen/YzqgBBm?editors=0010
 ```
 script(src="https://gnjo.github.io/hud/hud.js")
 ```
