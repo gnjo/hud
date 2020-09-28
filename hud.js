@@ -5,6 +5,12 @@
   ctx.fillText(Date.now()+'',640/2,32)
   h.update()
 */
+/*
+history
+v0.1 create 20200928
+v0.5 to PlaneBuffer
+v1.0 fontsize is 12 line height/12 
+*/
   ;(function(root){
     
     function entry(renderer){
@@ -21,7 +27,8 @@
 
       // Get 2D context and draw something supercool.
       var hudBitmap = hudCanvas.getContext('2d');
-      hudBitmap.font = "32px monospace";
+      let fontsize=~~(height/12.1)//fontsize 12line
+      hudBitmap.font = "${fontsize}px monospace";
       hudBitmap.textAlign = 'center';
       hudBitmap.fillStyle = "#00ff00";
       hudBitmap.fillText('Initializing...', width / 2, height / 2);
