@@ -32,6 +32,8 @@ v1.0 fontsize is 12 line height/12
       hudBitmap.textAlign = 'center';
       hudBitmap.fillStyle = "#00ff00";
       hudBitmap.fillText('Initializing...', width / 2, height / 2);
+      
+      console.log(fontsize,height)
 
       // Create the camera and set the viewport to match the screen dimensions.
       var cameraHUD = new THREE.OrthographicCamera(-width/2, width/2, height/2, -height/2, 0, 3 );
