@@ -77,7 +77,7 @@ v1.3 pen function add the blink
   }
   let time=0
   setInterval(()=>{ time++ },1000/20)
-  pen=function pen(text,line,lcr,blink){
+  let pen=function pen(text,line,lcr,blink){
    //ctx=
    let ctx=hudBitmap
    let w=ctx.canvas.width,h=ctx.canvas.height,fh=parseInt(ctx.font),fw=fh/2
