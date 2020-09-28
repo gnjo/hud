@@ -6,6 +6,7 @@ ctx.clearRect(0,0,640,480)
 ctx.fillText(Date.now()+'',640/2,32)
 h.update()
 pen('aiuewo',3,'c') //l c r
+pen('aiuewo',3,'c',7) //blinkspeed
 */
 /*
 history
@@ -14,6 +15,7 @@ v0.5 to PlaneBuffer
 v1.0 fontsize is 12 line height/12
 v1.1 width/32 =fontsize
 v1.2 height/16 
+v1.3 pen function add the blink
 */
 ;(function(root){
 
