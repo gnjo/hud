@@ -42,7 +42,7 @@
       material.transparent = true;
 
       // Create plane to render the HUD. This plane fill the whole screen.
-      var planeGeometry = new THREE.PlaneGeometry( width, height );
+      var planeGeometry = new THREE.PlaneBufferGeometry( width, height );
       var plane = new THREE.Mesh( planeGeometry, material );
       sceneHUD.add( plane );
       var loading=0
