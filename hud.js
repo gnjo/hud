@@ -17,7 +17,7 @@ v1.2 height/16
 */
 ;(function(root){
 
-function entry(renderer){
+ function entry(renderer){
   renderer.autoClear = false;
   let width=renderer.domElement.width
   let height=renderer.domElement.height
@@ -31,10 +31,10 @@ function entry(renderer){
 
   // Get 2D context and draw something supercool.
   var hudBitmap = hudCanvas.getContext('2d');
-//  let fontsize=~~(height/12.1)//fontsize 12line
-//  let fontsize=~~(width/32)
+  //  let fontsize=~~(height/12.1)//fontsize 12line
+  //  let fontsize=~~(width/32)
   let fontsize=~~(height/16)//fontsize 12line
-  
+
   hudBitmap.font = `${fontsize}px misaki,monospace`;
   hudBitmap.textAlign = 'center';
   hudBitmap.fillStyle = "#00ff00";
@@ -63,27 +63,42 @@ function entry(renderer){
   var loading=0
   setTimeout(()=>{loading=1},100)
   function update(){
-    if(!loading)return 
-    // Render HUD on top of the scene.
-    hudTexture.needsUpdate = true;    
-    renderer.render(sceneHUD, cameraHUD);    
+   if(!loading)return 
+   // Render HUD on top of the scene.
+   hudTexture.needsUpdate = true;    
+   renderer.render(sceneHUD, cameraHUD);    
   }
 
-  let pen=function pen(text,line,lcr){
-  let ctx=hudBitmap,w=ctx.canvas.width,h=ctx.canvas.height,fh=parseInt(ctx.font),fw=fh/2
-  ;
-  let wk=ctx.textAlign,x
-  lcr=lcr||wk
-  if(lcr.charAt(0)==='c')ctx.textAlign='center',x=w/2
-  if(lcr.charAt(0)==='l')ctx.textAlign='left',x=fw/2
-  if(lcr.charAt(0)==='r')ctx.textAlign='right',x=w-fw/2
-  ctx.fillText(text,x,fh*line+fh)
-  ctx.textAlign=wk
-}
-
+  function cycleval(count,speed){
+   speed=speed||1
+   return ((Math.sin(speed*count*Math.PI/180)+1)/2)
+  }
+  let time=0
+  setInterval(()=>{ time++ },1000/20)
+  pen=function pen(text,line,lcr,blink){
+   //ctx=
+   let ctx=hudBitmap
+   let w=ctx.canvas.width,h=ctx.canvas.height,fh=parseInt(ctx.font),fw=fh/2
+   ,wpx=ctx.measureText(text).width,hpx=fh*line+fh
+   ;
+   let wk=ctx.textAlign,x
+   lcr=lcr||wk
+   lcr=lcr.charAt(0)
+   if(lcr==='l')ctx.textAlign='left',x=fw/2  
+   if(lcr==='c')ctx.textAlign='center',x=w/2
+   if(lcr==='r')ctx.textAlign='right',x=w-fw/2
+   ctx.fillText(text,x,hpx)
+   ctx.textAlign=wk
+   if(!blink)return;
+   ctx.globalAlpha = cycleval(time,blink)/2
+   if(lcr==='l') ctx.fillRect(x-fw,hpx-fh+2,wpx+fw+x,fh+2)
+   if(lcr==='c') ctx.fillRect(w/2-wpx/2-fw/2,hpx-fh+2,wpx+fw,fh+2)
+   if(lcr==='r') ctx.fillRect(x-wpx-fw/2,hpx-fh+2,wpx+fw,fh+2)
+   ctx.globalAlpha=1
+  }
 
   return {ctx:hudBitmap,update:update,pen:pen}
-}
+ }
 
-root.hud=entry
+ root.hud=entry
 })(this);
