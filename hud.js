@@ -11,7 +11,8 @@ pen('aiuewo',3,'c') //l c r
 history
 v0.1 create 20200928
 v0.5 to PlaneBuffer
-v1.0 fontsize is 12 line height/12 
+v1.0 fontsize is 12 line height/12
+v1.1 width/30 =fontsize
 */
 ;(function(root){
 
@@ -29,7 +30,8 @@ function entry(renderer){
 
   // Get 2D context and draw something supercool.
   var hudBitmap = hudCanvas.getContext('2d');
-  let fontsize=~~(height/12.1)//fontsize 12line
+//  let fontsize=~~(height/12.1)//fontsize 12line
+  let fontsize=~~(width/30)
   hudBitmap.font = `${fontsize}px monospace`;
   hudBitmap.textAlign = 'center';
   hudBitmap.fillStyle = "#00ff00";
