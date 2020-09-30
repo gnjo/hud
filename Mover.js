@@ -154,8 +154,8 @@ Mover.prototype.getv=function getv(){
 }
 Mover.prototype.getp=function getp(){
  let m=this.mover,f,x,y
- f=~~(m.position.y/10*-1+0)
- x=~~(m.position.x/10+0)
- y=~~(m.position.z/10+0)
+ f=Math.round(m.position.y/10*-1+0)
+ x=Math.round(m.position.x/10+0)
+ y=Math.round(m.position.z/10+0)
  return {f:f,x:x,y:y}
 }
