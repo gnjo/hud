@@ -143,6 +143,7 @@ Mover.prototype.getv=function getv(){
  // 0   => S
  // -90(270) => W
  let m=this.mover
+ m.updateMatrixWorld() 
  let deg = Math.round((THREE.Math.radToDeg(m.rotation.y))+360)%360 +0
 // deg=Math.round(deg)
  if(deg===180)return this.v='N'
