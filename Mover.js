@@ -5,6 +5,10 @@ mover.add(light,new V3(0,boxsize*0.49,-boxsize*0.49))
 ;
 scene.add(mover.mover)
 scene.add(mover.grid)
+
+mover.movecheck=function(ch,o){
+ return true;//move ok// if dont move, return false
+}
 setTimeout(()=>{ mover.chase()},10)
 */
 var Mover=function(movesize,vec3){
@@ -57,6 +61,7 @@ var Mover=function(movesize,vec3){
   'D':'F'.charCodeAt(0)
  }
  this.keyevent=true
+ this.movecheck=function(ch,o){return true}
  let self=this
  document.documentElement.addEventListener('keydown',function(ev){
   //console.log(ev,self.moving,self.keyevent)
@@ -65,7 +70,7 @@ var Mover=function(movesize,vec3){
   if(self.moving)return
   let ch;
   Object.keys(self.keymap).map(key=>{if(ev.which===self.keymap[key])ch=key })
-  if(ch) self.move(ch,self.wait)
+  if(ch&&self.movecheck(ch,self)) self.move(ch,self.wait)
   ;
  })
  ;
