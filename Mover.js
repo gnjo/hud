@@ -1,4 +1,7 @@
 /*usage
+camera = new THREE.PerspectiveCamera( 75,ww/hh, 1, 50 );
+light = new THREE.PointLight(new THREE.Color(0xffffff),4.0,boxsize*5,5);
+
 mover=new Mover(boxsize,new V3(0))
 mover.add(camera,new V3(0,-0.1,-boxsize*0.49))
 mover.add(light,new V3(0,boxsize*0.49,-boxsize*0.49))
