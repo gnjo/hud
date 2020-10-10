@@ -10,6 +10,9 @@ mover.movecheck=function(ch,o){
 return true;//move ok// if dont move, return false
 }
 setTimeout(()=>{ mover.chase()},10)
+
+plane.position.copy( mover.p2g(0,10,10) )
+
 */
 var Mover=function(movesize,vec3){
 vec3=vec3||new THREE.Vector3(0)
