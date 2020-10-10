@@ -68,7 +68,7 @@ scene.add(b1)
    ,c=document.createElement('canvas'),ctx=c.getContext("2d")
    c.height=h;c.width=w
    ctx.drawImage(img,0,0,w,h)
-   ctx.globalCompositeOperation = "lighter";
+   ctx.globalCompositeOperation = "difference"//"lighter";
    ctx.globalAlpha=0.5
    ctx.fillStyle = color//"#333333";
    let w2=w*0.6,h2=h*0.8
