@@ -53,6 +53,66 @@ scene.add(b1)
    tex.needsUpdate=true////
   }
  }
+ 
+ function adddoor(opt){
+  return (tex)=>{
+    var color='#aaaaaa'
+    //opt===0 wall
+    //opt===1 door
+    //opt===2 key
+    //opt===3 hide
+    if(opt===2) color='#aa3333'
+    if(opt===3) color='#333333'
+    //
+   let img=tex.image,w=img.naturalWidth,h=img.naturalHeight
+   ,c=document.createElement('canvas'),ctx=c.getContext("2d")
+   c.height=h;c.width=w
+   ctx.drawImage(img,0,0,w,h)
+   ctx.globalCompositeOperation = "lighter";
+   ctx.globalAlpha=0.5
+   ctx.fillStyle = color//"#333333";
+   let w2=w*0.6,h2=h*0.8
+   ctx.fillRect(w*0.2,h*0.2,w2,h2);
+   tex.image.src=c.toDataURL()
+   tex.needsUpdate=true////       
+  }
+ }
+ 
+ /*
+   function wall3d(url,opt,size){
+    size=size||128
+    var color='#aaaaaa'
+    //opt===0 wall
+    //opt===1 door
+    //opt===2 key
+    //opt===3 hide
+    if(opt===2) color='#aa3333'
+    if(opt===3) color='#333333'
+
+    let hash=[url,opt,size].join('_')
+    if(_tile[hash])return _tile[hash]
+    ;    
+
+    var a = new Image();
+    var c=document.createElement('canvas')
+    var ctx=c.getContext('2d')
+    var w=ctx.canvas.width=size,h=ctx.canvas.height=size
+    a.onload = function(){
+      ctx.drawImage(a,0,0,size,size)
+      if(!opt)return _tile[hash]=img
+      ;
+      ctx.globalCompositeOperation = "lighter";
+      ctx.globalAlpha=0.5
+      ctx.fillStyle = color//"#333333";
+      let w2=w*0.6,h2=h*0.8
+      ctx.fillRect(w*0.2,h*0.2,w2,h2);
+    };
+    a.src = url
+    return _tile[hash]=img
+  }  
+
+ */
+ 
 
  function icon(a,b,size,color){
   //console.log(a,b,size,color)
@@ -116,7 +176,8 @@ scene.add(b1)
   ;
   if(/^#/.test(url))return _tex[hash]=texhatch(url,tilenum,tilesize,other)
   if(!/\./.test(url))return  _tex[hash]=texmark(url,tilenum,tilesize,other)
-  if(tilenum!=void 0) return _tex[hash]=loader.load(_url(url),tip(tilenum,tilesize))
+  if(tilesize!=void 0) return _tex[hash]=loader.load(_url(url),tip(tilenum,tilesize))
+  if(tilenum!=void 0) return _tex[hash]=loader.load(_url(url),adddoor(tilenum)) //add door
   return _tex[hash]=loader.load(_url(url))
  }
  root._tex=_tex
