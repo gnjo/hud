@@ -164,9 +164,9 @@ return this.v
 Mover.prototype.getp=function getp(){
 let m=this.mover,f,x,y
 m.updateMatrixWorld()
-f=Math.round(m.position.y/10*-1+0)
-x=Math.round(m.position.x/10+0)
-y=Math.round(m.position.z/10+0)
+f=Math.round(m.position.y/10*-1+0) +0
+x=Math.round(m.position.x/10+0) +0
+y=Math.round(m.position.z/10+0) +0
 return {f:f,x:x,y:y}
 }
 
