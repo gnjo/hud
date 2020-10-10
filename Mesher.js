@@ -204,7 +204,7 @@ var Mesher=function(boxsize){
   alphaTest: 0.5,
   side:THREE.DoubleSide
  });
- this.planegeo=new THREE.PlaneBufferGeometry(boxsize/2,boxsize/2,16)
+ this.planegeo=new THREE.PlaneBufferGeometry(boxsize/4,boxsize/4,16)
  ;
 }
 
