@@ -167,6 +167,12 @@ y=Math.round(m.position.z/10+0)
 return {f:f,x:x,y:y}
 }
 
+Mover.prototype.p2g=function p2g(f,x,y){
+ //pos to geopos
+let s=this.movesize
+return new THREE.Vector3(x*s+0,f*-1*s+0,y*s+0)
+}
+
 
 //short util _v()
 //_v(v).turn()
