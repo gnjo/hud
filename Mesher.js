@@ -56,7 +56,7 @@ scene.add(b1)
  
  function adddoor(opt){
   return (tex)=>{
-    var color='#aaaaaa'
+    var color='#8888aa'
     //opt===0 wall
     //opt===1 door
     //opt===2 key
