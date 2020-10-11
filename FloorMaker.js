@@ -296,6 +296,9 @@ var FloorMaker=function(str,boxsize){
  let s=16*21
  this.fullmap=document.createElement('canvas')
  this.footmap=document.createElement('canvas')
+ this.fullmap.width=this.footmap.width=this.fullmapsize
+ this.fullmap.height=this.footmap.height=this.fullmapsize
+  
 }
 FloorMaker.prototype.p2g=function p2g(f,x,y){//pos to geopos
  let s=this.boxsize
@@ -376,8 +379,6 @@ FloorMaker.prototype.mapframe=function mapframe(cell,size,ctx){
 }
 
 FloorMaker.prototype.makemap=function(){
-  this.fullmap.width=this.footmap.width=this.fullmapsize
-  this.fullmap.height=this.footmap.height=this.fullmapsize  
   let data=this.data,p=this.patterns
   ,ctx=this.fullmap.getContext('2d')
   this.mapframe(20,16,ctx)
@@ -410,6 +411,9 @@ FloorMaker.prototype.makefootmap=function(footary){
 }
 
 //walked color? unwalk color
+
+//script(src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js")
+//script(src="https://gnjo.github.io/hud/Mesher.js?v=10")
 
 /*
 let xx=new FloorMaker(da)
