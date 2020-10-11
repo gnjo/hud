@@ -1,3 +1,8 @@
+/*history
+v0.1 build
+v1.0 mesh chase true rotation
+
+*/
 /*usage
 camera = new THREE.PerspectiveCamera( 75,ww/hh, 1, 50 );
 light = new THREE.PointLight(new THREE.Color(0xffffff),4.0,boxsize*5,5);
@@ -90,6 +95,10 @@ Mover.prototype.islight=function(mesh){
 if(!mesh)return
 return /light/i.test(mesh.type)
 }
+Mover.prototype.ismesh=function(mesh){
+if(!mesh)return
+return /mesh/i.test(mesh.type) 
+}
 Mover.prototype.add=function(mesh,offset){
 let v=new THREE.Vector3(0)
 this.chaseary.push({mesh:mesh,offset:offset||v})
@@ -103,6 +112,8 @@ chaser.position.y = boffset.y;
 chaser.position.z = boffset.z;
 if(this.iscamera(chaser)) chaser.lookAt( base.position );
 if(this.islight(chaser)) chaser.target=base
+if(this.ismesh(chaser)) chaser.rotation.copy(base.rotation) //v1.0
+ 
 }
 Mover.prototype.chase=function(){
 this.chaseary.map(d=>{
