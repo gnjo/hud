@@ -6,6 +6,7 @@ var FloorMaker=function(str,boxsize){
  //■x41w+\n
  //x41h
  this.boxsize=boxsize||10
+ this.mm=new Mesher(boxsize)
  let a=str.trim().split('\n')
  this._header=a.shift()
  this._mapstr=a.join('\n').trim()
@@ -96,7 +97,7 @@ FloorMaker.prototype.build=function(){
  data.map((d,i)=>{
   let y=~~(i/20),x=i%20,size=16,ox=size,oy=size,p=this.patterns,p2g=this.p2g
   ,iswall=this.iswall,wall=this.wall,isdoor=this.isdoor,door=this.door
-  ,ground=this.ground,isicon=this.isicon
+  ,ground=this.ground,isicon=this.isicon,mm=this.mm
   let mesh=mm.make({
    n:check(d.n),
    e:check(d.e),
