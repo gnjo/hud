@@ -99,7 +99,7 @@ v1.3 pen function add the blink
    ctx.globalAlpha=1
   }
 
-  return {ctx:hudBitmap,update:update,pen:pen}
+  return {canvas:hudCanvas,ctx:hudBitmap,update:update,pen:pen}
  }
 
  root.hud=entry
