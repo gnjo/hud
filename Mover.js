@@ -141,7 +141,7 @@ if(!fn)return this.moving=0
 this.lop((i)=>{
  //console.log(i)
  fn.call(target,dd)/*,this.chase()*/
- if(i===0) setTimeout(()=>{/*this.chase(),*/this.moving=0},1000/20)
+ if(i===0) setTimeout(()=>{/*this.chase(),*/this.moving=0},0)
 },dt,sp)
 ;
 }
