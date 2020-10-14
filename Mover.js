@@ -228,7 +228,7 @@ o.left=()=>{
 return o;
 }
 
-export {Mover,_v}
+//export {Mover,_v}
 
 
 
