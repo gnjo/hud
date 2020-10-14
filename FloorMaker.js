@@ -387,7 +387,7 @@ FloorMaker.prototype.makemap=function(){
   //this.fullmap=document.createElement('canvas')
   //this.footmap=document.createElement('canvas')
   data.map((d,i)=>{
-    let y=~~(i/20),x=i%20,size=16,ox=size,oy=size,p=xx.patterns
+    let y=~~(i/20),x=i%20,size=16,ox=size,oy=size //,p=xx.patterns
     let g=(p[d.g])?tile(p[d.g],2,16):tile(d.g,0,16)
     ;
     let wall=tile(d,g,16)
