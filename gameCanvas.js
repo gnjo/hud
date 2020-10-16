@@ -31,3 +31,19 @@ var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer({antialias: true,canvas:canvas});
 
 */
+
+function gameSound(name){
+ let el=document.createElement('video')
+ el.classList.add(name||'')
+ el.setAttribute('autoplay','autoplay')
+ el.style="display:none"
+ document.body.appendChild(el)
+ return el 
+}
+function gameSE(name){return gameSound(name||'se')}
+function gameBGM(name){return gameSound(name||'bgm')}
+/*
+ fn.q('.se').src=se[ss]
+ fn.q('.im').src=im[ii]
+ fn.q('video.se').volume=i*0.01
+*/
