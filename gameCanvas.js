@@ -37,9 +37,32 @@ function gameSound(name){
  el.classList.add(name||'')
  el.setAttribute('autoplay','autoplay')
  el.style="display:none"
+ function userControlled(){
+  if(el.dataset.needsUpdate) el.play()
+  el.dataset.needsUpdate=''    
+ }
  document.body.appendChild(el)
+ ;['keydown','mousemove','mousedown','contextmenu','wheel'].map(d=>{window.addEventListener(d,userControlled)});
  return el 
+  /*
+ function userCotrolled(){
+  if(ZAP_SE.dataset.needsUpdate) ZAP_SE.play()
+  if(ZAP_BGM.dataset.needsUpdate) ZAP_BGM.play()
+  ZAP_SE.dataset.needsUpdate=''
+  ZAP_BGM.dataset.needsUpdate=''
+//console.log(ZAP_SE.dataset.needsUpdate)
+//音はユーザーコントロールでなければならない。
+//キーイベントかマウスイベントにトラップする。
+//document.body.onclick=()=>{
+// SE_('crystal1.ogg')
+// userCotrolled()
+//}
+ 
+ }
+  
+*/  
 }
+
 function gameSE(name){return gameSound(name||'se')}
 function gameBGM(name){return gameSound(name||'bgm')}
 /*
