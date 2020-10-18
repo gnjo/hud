@@ -1,7 +1,16 @@
 function gameCanvas(w,h){
   //640,480
   //keepsize
-  let bs='background:#0a0a0a;margin:0 auto;width:100%;height:100%;padding:0;'
+  //antialias
+  let bs2=`
+  image-rendering: optimizeSpeed;             /* Older versions of FF          */
+  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+  image-rendering: pixelated;                 /* Awesome future-browsers       */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+  `;
+  let bs='background:#0a0a0a;margin:0 auto;width:100%;height:100%;padding:0;'+bs2
   ,asp=w/h
   ,fitw='display:block;width:100vw;height:auto;margin:auto;'
   ,fith='display:block;width:auto;height:100vh;margin:auto;'
