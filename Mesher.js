@@ -113,7 +113,7 @@ scene.add(b1)
 
  */
  
-
+/*
  function icon(a,b,size,color){
   //console.log(a,b,size,color)
   color=color||'#ffffff'
@@ -141,6 +141,52 @@ scene.add(b1)
   ctx.stroke()
   return img;
  }
+ */
+ 
+ function icon(a,b,size,color,rot){
+  //console.log(a,b,size,color)
+  color=color||'#ffffff'
+  size=size||16
+  //let hash=[a,b,size,color].join('_')
+  //    if(_tile[hash])return _tile[hash]
+  ;    
+  //b===0 //no outline
+  //b===1 //circle
+  //b===2 //square
+  let img=document.createElement('canvas')
+  let ctx=img.getContext('2d')
+  img.width=img.height=size
+  ctx.imageSmoothingEnabled= false  
+  ;
+
+  let r=img.width/2
+  ctx.font=`${r*1.4}px sans-serif`
+  ctx.textAlign='center'
+  ctx.textBaseline = 'middle'
+  ctx.save()
+  if(rot){
+   //rotation icon
+   //icon('▲',0,16,'#fff','N')
+   if(/N/i.test(rot)) rot=0
+   else if(/E/i.test(rot)) rot=90
+   else if(/S/i.test(rot)) rot=180
+   else if(/W/i.test(rot)) rot=270
+   ctx.translate(parseInt(size / 2), parseInt(size / 2))
+   ctx.rotate((rot * Math.PI) / 180);
+   ctx.translate(-1*parseInt(size / 2), -1*parseInt(size / 2))   
+  }  
+  ctx.fillStyle=color
+  ctx.fillText(a,r,r,img.width)
+  //
+  ctx.restore()
+  ctx.strokeStyle=color
+  ctx.lineWidth=size>16?2:1
+  if(b===1) ctx.rect(0, 0, r*2, r*2)
+  else if(b===2)ctx.arc(r, r, r-1, 0, 2*Math.PI,true)
+  ctx.stroke()
+  return img;
+ }
+
 
  function hatch2(a,size){
   let img=document.createElement('canvas')
