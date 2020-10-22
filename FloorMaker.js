@@ -316,6 +316,9 @@ var FloorMaker=function(str,boxsize){
  this.doorkey=tex(this.wallurl,2)
  this.doorsec=tex(this.wallurl,3)
  this.ground=this.wall
+  
+ this.isdooroneway=/[上下左右]/ //special
+
  this.iswall=/[■□壁０１２３４５６７８９＋]/
  this.isdoor=/[扉隠鍵\u3040-\u309f]/
  this.isdoorkey=/[鍵\u3040-\u309f]/ //あ～ん
@@ -381,6 +384,56 @@ FloorMaker.prototype.tomapdata=function tomapdata(ary,w){
   }
  return data
 }
+
+
+FloorMaker.prototype.build=function(){
+ 
+ //this.isdooroneway=/[上下左右]/
+ 
+ let data=this.data
+ let check=(d,v)=>{
+  v=v||'',v=v.toUpperCase()
+  if(this.isdooroneway.test(d)){
+   //console.log('hit')
+   if(v==='N'&&d==='上')return this.door
+   if(v==='S'&&d==='下')return this.door
+   if(v==='E'&&d==='右')return this.door
+   if(v==='W'&&d==='左')return this.door   
+   return this.wall;
+  }
+  if(this.iswall.test(d))return this.wall
+  if(!this.isdoor.test(d))return void 0;
+  if(this.isdoorkey.test(d))return this.doorkey
+  if(this.isdoorsec.test(d))return this.doorsec
+  return this.door
+ }
+ data.map((d,i)=>{
+  let y=~~(i/20),x=i%20,size=16,ox=size,oy=size,p=this.patterns,p2g=this.p2g
+  ,iswall=this.iswall,wall=this.wall,isdoor=this.isdoor,door=this.door
+  ,ground=this.ground,isicon=this.isicon,mm=this.mm
+  let mesh=mm.make({
+   n:check(d.n,'n'),
+   e:check(d.e,'e'),
+   w:check(d.w,'w'),
+   s:check(d.s,'s'),
+   c:wall,
+   g:p[d.g]?tex(p[d.g],128):ground,
+  })
+  mesh.position.copy(p2g( this.number ,x,y))
+  this.floor.add(mesh)
+  //console.log(d)
+  //icon make
+  if(!isicon.test(d.g))return;
+  let icon=mm.make({i:tex(d.g,1,128,'#ffffff')},'icon')
+  icon.position.copy(p2g( this.number ,x,y))
+  this.floor.add(icon)
+  //console.log(icon)
+ })
+ ///
+ return this.floor
+}
+
+/*
 FloorMaker.prototype.build=function(){
  let data=this.data
  let check=(d)=>{
@@ -415,6 +468,7 @@ FloorMaker.prototype.build=function(){
  ///
  return this.floor
 }
+*/
 
 
 FloorMaker.prototype.mapframe=function mapframe(cell,size,ctx){
