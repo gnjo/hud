@@ -10,10 +10,10 @@ function gameCanvas(w,h){
   image-rendering: pixelated;                 /* Awesome future-browsers       */
   -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
   `;
-  let bs='background:#0a0a0a;margin:0 auto;width:100%;height:100%;padding:0;'+bs2
+  let bs='background:#0a0a0a;margin:0 auto;width:100%;height:100%;padding:0;'
   ,asp=w/h
-  ,fitw='display:block;width:100vw;height:auto;margin:auto;'
-  ,fith='display:block;width:auto;height:100vh;margin:auto;'
+  ,fitw='display:block;width:100vw;height:auto;margin:auto;' +bs2
+  ,fith='display:block;width:auto;height:100vh;margin:auto;' +bs2
   ,canvas=document.createElement('canvas')
   ,_w=window.innerWidth,_h=window.innerHeight
   ,resize=()=>{
