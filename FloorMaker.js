@@ -335,7 +335,7 @@ var FloorMaker=function(str,boxsize){
 　禁：転移禁止床。黄色。
 */  
   //"針":"#885544",
-  //"毒":"#008800",
+  "毒":"#008800",
   //"黙":"#880088",
   "→":"#77aabb",
   "↓":"#77aabb",
@@ -484,7 +484,7 @@ FloorMaker.prototype.mapframe=function mapframe(cell,size,ctx){
 }
 
 FloorMaker.prototype.makemap=function(){
-  let data=this.data,p=this.patterns
+  let data=this.data,p={} //全て文字に //this.patterns
   ,ctx=this.fullmap.getContext('2d')
   this.mapframe(20,16,ctx)
   //this.fullmapsize=16*21
