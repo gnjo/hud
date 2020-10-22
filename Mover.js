@@ -1,6 +1,7 @@
 /*history
 v0.1 build
 v1.0 mesh chase true rotation
+v1.1 jump
 
 */
 /*usage
@@ -125,6 +126,7 @@ this.chaseary.map(d=>{
 Mover.prototype.move=function move(ch,time){
 this.moving=1
 time=time||this.time
+ch=ch||'',ch=ch.toUpperCase() //v1.1
 let sp=this.split,boxsize=this.movesize
  ,dd,val,fn,target=this.mover,dt=time/sp
 ;
@@ -185,10 +187,61 @@ y=Math.round(m.position.z/10+0) +0
 return {f:f,x:x,y:y}
 }
 
+/*
 Mover.prototype.p2g=function p2g(f,x,y){
  //pos to geopos
 let s=this.movesize
 return new THREE.Vector3(x*s+0,f*-1*s+0,y*s+0)
+}
+*/
+
+Mover.prototype.isaddr=(d)=>{
+ return /F\d\dX\d\dY\d\d/i.test(d)
+}
+Mover.prototype.isAddr=Mover.prototype.isaddr
+
+Mover.prototype.geta=function geta(){
+ let pos=this.getp()
+ let v=this.getv()
+ return 'F'+('00'+pos.f).slice(-2)+
+  'X'+('00'+pos.x).slice(-2)+
+  'Y'+('00'+pos.y).slice(-2)+
+  '.'+v
+}
+
+Mover.prototype.p2v=function p2v(_v){
+ let ch =_v.slice(-1).charAt(0)
+ let v =/[NEWS]/i.test(ch)?ch:'N'
+ let n=this.vecmap[v]
+ //console.log(ch,v,n)
+ return THREE.Math.degToRad(n)
+}
+
+//v1.1
+Mover.prototype.p2g=function p2g(f,x,y){
+ //pos to geopos
+ if(this.isaddr(f)){
+  let ff=parseInt(f.charAt(1)+f.charAt(2))
+  //3
+  let xx=parseInt(f.charAt(4)+f.charAt(5))
+  //6
+  let yy=parseInt(f.charAt(7)+f.charAt(8))
+  return this.p2g(ff,xx,yy)
+ }
+let s=this.movesize
+return new THREE.Vector3(x*s+0,f*-1*s+0,y*s+0)
+}
+
+Mover.prototype.jump=function jump(addr){
+ this.moving=1
+ if(!this.isaddr(addr))return console.warn('bad address',addr),this.moving=0
+ let pos=this.p2g(addr)
+ let ry=this.p2v(addr)
+ //console.log(pos,ry)
+ this.mover.position.copy(pos)
+ this.mover.rotation.y=ry
+ //
+ return this.moving=0
 }
 
 
