@@ -220,8 +220,8 @@ function icon(a,b,size,color,rot){
     //wall #ffffff
     let mwall=/[壁■□０１２３４５６７８９＋]/
     let mroad=/[道　]/
-    let mdoor=/[扉]/
-    let mdoor2=/[隠]/
+    let mdoor=/[扉隠]/ // /[扉]/ //隠し扉も表示
+    //let mdoor2=/[隠]/
     let mdoor3=/[鍵\u3040-\u309f]/
     let mwall2=/[上下左右扉隠鍵壁■□０１２３４５６７８９＋\u3040-\u309f]/
     /*　あ～ん：鍵付き扉。識別用。
