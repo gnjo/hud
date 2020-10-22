@@ -317,10 +317,11 @@ var FloorMaker=function(str,boxsize){
  this.doorsec=tex(this.wallurl,3)
  this.ground=this.wall
  this.iswall=/[■□壁０１２３４５６７８９＋]/
- this.isdoor=/[扉隠鍵]/
- this.isdoorkey=/[鍵]/ //あ～ん
+ this.isdoor=/[扉隠鍵\u3040-\u309f]/
+ this.isdoorkey=/[鍵\u3040-\u309f]/ //あ～ん
  this.isdoorsec=/[隠]/
  this.isicon=/[出入脱街宝箱昇降？！\u30a0-\u30ff]/
+ //is.hiragana=(d)=>{return /[\u3040-\u309f]/.test(d)}
  // is.katakana=(d)=>{return /[\u30a0-\u30ff]/.test(d)}
  this.patterns={
   /*
