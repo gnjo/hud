@@ -235,7 +235,7 @@ scene.add(b1)
 var Mesher=function(boxsize){
  this.boxsize=boxsize||10
  //bumpmap
- this.boxmat=new THREE.MeshPhongMaterial({//THREE.MeshLambertMaterial({
+ this.boxmat=new THREE.MeshLambertMaterial({//THREE.MeshPhongMaterial({
   map: void 0, //needupdate
   visible:false, //needupdate
   //transparent:true,
@@ -268,7 +268,7 @@ Mesher.prototype.makebox=function(obj,name){
   m.map=d,m.visible=true
   //bumpmap
   m.bumpMap=d// テクスチャと同じものを設定するだけでOK
-  m.bumpMapScale = this.boxsize*0.02;
+  m.bumpMapScale = 1// 0-1
   //
   return m   
  })
