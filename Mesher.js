@@ -266,8 +266,8 @@ Mesher.prototype.makebox=function(obj,name){
   let m=mat.clone()
   m.map=d,m.visible=true
   //bumpmap
-  m.bumpMap=d// テクスチャと同じものを設定するだけでOK
-  m.bumpMapScale = 0.2;
+//  m.bumpMap=d// テクスチャと同じものを設定するだけでOK
+//  m.bumpMapScale = 0.2;
   //
   return m   
  })
