@@ -268,7 +268,7 @@ Mesher.prototype.makebox=function(obj,name){
   m.map=d,m.visible=true
   //bumpmap
   m.bumpMap=d// テクスチャと同じものを設定するだけでOK
-  m.bumpMapScale = this.boxsize*0.2;
+  m.bumpMapScale = this.boxsize*0.02;
   //
   return m   
  })
