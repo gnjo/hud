@@ -240,7 +240,8 @@ var Mesher=function(boxsize){
   visible:false, //needupdate
   //transparent:true,
   //alphaTest: 0.5,
-  side:THREE.BackSide
+  side:THREE.BackSide,
+  shininess:10 //deafut 30
  });
  this.boxgeo=new THREE.BoxBufferGeometry(boxsize,boxsize,boxsize)
 
