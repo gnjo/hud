@@ -265,6 +265,10 @@ Mesher.prototype.makebox=function(obj,name){
   if(!d)return mat.clone()
   let m=mat.clone()
   m.map=d,m.visible=true
+  //bumpmap
+  m.bumpMap=d// テクスチャと同じものを設定するだけでOK
+  m.bumpMapScale = 0.2;
+  //
   return m   
  })
  let mesh=new THREE.Mesh(geo,mats)
