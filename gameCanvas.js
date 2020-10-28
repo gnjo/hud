@@ -1,4 +1,4 @@
-function gameCanvas(w,h){
+function gameCanvas(w,h,resizenone){
   //640,480
   //keepsize
   //antialias
@@ -20,12 +20,13 @@ function gameCanvas(w,h){
     _w=window.innerWidth,_h=window.innerHeight
     return canvas.style=(_w>_h*asp)?fith:fitw
   }
+  ,nonestyle='display:block;'+bs2
   ;
   canvas.width=w,canvas.height=h
   document.body.style=bs
-  resize()
+  if(!resizenone) resize(),window.addEventListener('resize',resize) ;
+  else canvas.style=nonestyle
   document.body.appendChild(canvas)
-  window.addEventListener('resize',resize)
   ;
   return canvas;
 }
