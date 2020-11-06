@@ -5,9 +5,13 @@ v1.1 jump
 
 */
 /*usage
-camera = new THREE.PerspectiveCamera( 75,ww/hh, 1, 50 );
-light = new THREE.PointLight(new THREE.Color(0xffffff),4.0,boxsize*5,5);
-light = new THREE.SpotLight( 0xddeeff,2.0,boxsize*3,5 );
+ renderer.setClearColor(0x000000,1)
+ //45ぐらいが人間だが、背後から見ている方が酔いにくい。よって75。
+ camera = new THREE.PerspectiveCamera( 75,ww/hh, 1, boxsize*4 );
+ //0xddeeff //暗闇において、生体視野は、赤の減衰が多い、緑は中間、青は減衰しにくい。
+ light = new THREE.SpotLight( 0xddeeff,1.0,boxsize*3,4);
+ //light.near=0.1
+ scene.add( light );
 
 mover=new Mover(boxsize,new V3(0))
 mover.add(camera,new V3(0,-0.1,-boxsize*0.49))
