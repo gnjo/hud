@@ -250,9 +250,10 @@ var Mesher=function(boxsize){
   visible:false, //needupdate
   transparent:true,
   alphaTest: 0.5,
-  side:THREE.DoubleSide
+  side:THREE.DoubleSide,
+  shininess:10 //deafut 30  
  });
- this.planegeo=new THREE.PlaneBufferGeometry(boxsize/4,boxsize/4,16,16)
+ this.planegeo=new THREE.PlaneBufferGeometry(boxsize/*/4*/,boxsize/*/4*/,16,16)
  ;
 }
 
@@ -277,12 +278,13 @@ Mesher.prototype.makebox=function(obj,name){
  mesh.name=name
  return mesh;
 }
-Mesher.prototype.makeplane=function(obj,name){
+Mesher.prototype.makeplane=function(obj,name,scale){
  let geo=this.planegeo
  let mat=this.planemat.clone()
  let mesh = new THREE.Mesh(geo,mat) 
  ;
  mat.map=obj.i,mat.visible=true,mat.map.needsUpdate=true,mesh.name=name
+ if(scale) mesh.scale.set(scale,scale,1)
  return mesh
 }
 Mesher.prototype.make=function(obj,name){
@@ -290,7 +292,7 @@ Mesher.prototype.make=function(obj,name){
  // c,g,
  // s,n,i}
  //function isstring(obj){return toString.call(obj) === '[object String]'}; 
- if(obj.i)return this.makeplane(obj,name)
+ if(obj.i)return this.makeplane(obj,name,0.25)
  else return this.makebox(obj,name)
 
 }
